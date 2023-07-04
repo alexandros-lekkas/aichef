@@ -9,18 +9,20 @@
 // (not using pre-trained model)              
 
 // OpenAI
-import { OpenAIStream, StreamingTextResponse } from 'ai'
-import { Configuration, OpenAIApi } from 'openai-edge'
+import { OpenAIStream, StreamingTextResponse } from 'ai';
+import { Configuration, OpenAIApi } from 'openai-edge';
 
 // Create an OpenAI API client
 const config = new Configuration({
   apiKey: process.env.OPENAI_API_KEY
-})
+});
 const openai = new OpenAIApi(config)
+const key = process.env.OPENAI_API_KEY;
 
 // Send message to GPT3 function
 export async function sendMessage(message) {
-    console.log('[CHAT] Prompt:', message)
+    console.log('[Chat] Prompt:', message)
+    console.log('Key', key);
 
     // Array of messages constructed by user array
     const messages = [
@@ -43,9 +45,9 @@ export async function sendMessage(message) {
 
         // Reponse handled with appplication logic
         const reply = response.choices[0].message.content;
-        console.log('[CHAT] Reply:', reply);
+        console.log('[Chat] Reply:', reply);
     } catch (error) {
-        console.error('[ERROR]', error)
+        console.error('[Reply]', error)
     }
 
 };
