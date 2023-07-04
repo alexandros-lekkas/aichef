@@ -9,19 +9,24 @@
 
 import Head from 'next/head';
 import Image from 'next/image';
+import Link from 'next/link';
 import styles from './layout.module.css';
+
+// Variables kept for re-use
+const placeholder = 'placeholder';
+export const siteTitle = 'AIChef';
 
 export default function Layout({ children, home }) {
     return (
         <div>
             <div className={styles.navbar}>
                 <nav>
-                    <h2>AIChef</h2>
-                    <a href="/">Home</a>
-                    <a href="https://github.com/lekkasgit/aichef">GitHub</a>
+                    <h1>AIChef</h1>
+                    <Link href="/">Home 🏠</Link>
+                    <Link href="https://github.com/lekkasgit/aichef">GitHub 🔌</Link>
                 </nav>
             </div>
-            
+
             <div>{children}</div>
         </div>
     );
