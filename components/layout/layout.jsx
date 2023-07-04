@@ -13,12 +13,16 @@ import styles from './layout.module.css';
 
 export default function Layout({ children, home }) {
     return (
-        <div className={styles.navbar}>
-            <nav>
-                <h2>AIChef</h2>
-                <a href="/">Home</a>
-                <a href="https://github.com/lekkasgit/aichef">GitHub</a>
-            </nav>
+        <div>
+            <div className={styles.navbar}>
+                <nav>
+                    <h2>AIChef</h2>
+                    <a href="/">Home</a>
+                    <a href="https://github.com/lekkasgit/aichef">GitHub</a>
+                </nav>
+            </div>
+            
+            <div>{children}</div>
         </div>
     );
 };
