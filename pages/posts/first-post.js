@@ -1,10 +1,11 @@
 import Link from "next/link";
 import Image from "next/image";
 import Head from "next/head";
+import Layout from "../../components/layout"
 
 export default function FirstPost() {
     return (
-        <>
+        <Layout>
             <Head>
                 <title>First Post</title>
                 <script src="https://connect.facebook.net/en_US/sdk.js" />
@@ -21,7 +22,7 @@ export default function FirstPost() {
                 alt="Hello"
             />
 
-        </>
+        </Layout>
     );
 
 // FIX THIS AFTER
