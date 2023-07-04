@@ -42,8 +42,10 @@ export default function Home() {
                 <p>👨‍🍳 OpenAI powered recipe and image generation</p>
             </section>
             <section>
-                <input type="text" value={message} onChange={handleInputChange}/>
-                <button type="submit">Send</button>
+                <form onSubmit={handleSubmit}>
+                    <input type="text" value={message} onChange={handleInputChange}/>
+                    <button type="submit">Send</button>
+                </form>
             </section>
         </Layout>
     );
