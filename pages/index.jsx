@@ -1,52 +1,68 @@
-//  _____           _           
-// |_   _|         | |          
+//  _____           _
+// |_   _|         | |
 //   | |  _ __   __| | _____  __
 //   | | | '_ \ / _` |/ _ \ \/ /
-//  _| |_| | | | (_| |  __/>  < 
+//  _| |_| | | | (_| |  __/>  <
 // |_____|_| |_|\__,_|\___/_/\_\
 
 // React
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import { getStreamingResponse } from "../api/model/chat.jsx";
 
 // Next
-import Head from 'next/head';
+import Head from "next/head";
 
 // Components
-import Layout from '../components/layout/layout.jsx';
-
-// API
-import { sendMessage } from '../api/model/chat.jsx';
+import Layout from "../components/layout/layout.jsx";
 
 // Home
 export default function Home() {
-    const [message, setMessage] = useState('');
+  const [responseChunks, setResponseChunks] = useState([]);
+  const [message, setMessage] = useState('');
 
-    // Change value on input
-    const handleInputChange = (event) => {
-        setMessage(event.target.value); // Set value to response
-    };
+  const handleInputChange = (event) => {
+    setMessage(event.target.value);
+  };
 
-    // POST to chatGPT on submit
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        sendMessage(message);
-        setMessage('');
-    };
+  const handleSendMessage = async () => {
+    const messages = [
+      {
+        role: "system",
+        content: "You are a helpful assistant that provides recipe suggestions",
+      },
+      { role: "user", content: message }, // Replace "message" with the user's input
+    ];
 
-    return (
-        <Layout home>
-            <Head>
-                <title>AIChef - Home</title>
-            </Head>
-            <section>
-                <p>👨‍🍳 OpenAI powered recipe and image generation</p>
-            </section>
-            <section>
-                <form onSubmit={handleSubmit}>
-                    <input type="text" value={message} onChange={handleInputChange}/>
-                    <button type="submit">Send</button>
-                </form>
-            </section>
-        </Layout>
-    );
-};
+    const streamingResponse = await getStreamingResponse(messages);
+
+    let chunk;
+    while ((chunk = await streamingResponse.readChunk())) {
+      setResponseChunks((prevChunks) => [...prevChunks, chunk]);
+    }
+  };
+
+  return (
+    <Layout home>
+      <Head>
+        <title>AIChef - Home</title>
+      </Head>
+      <section>
+        <p>👨‍🍳 OpenAI powered recipe and image generation</p>
+      </section>
+      <section>
+        <div>
+          {/* Render the response chunks */}
+          {responseChunks.map((chunk, index) => (
+            <p key={index}>{chunk}</p>
+          ))}
+
+          {/* Input form */}
+          <form onSubmit={handleSendMessage}>
+            <input type="text" />
+            <button type="submit">Send</button>
+          </form>
+        </div>
+      </section>
+    </Layout>
+  );
+}

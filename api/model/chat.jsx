@@ -14,7 +14,7 @@ import { Configuration, OpenAIApi } from 'openai-edge';
 
 // Create an OpenAI API client
 const config = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY
+  apiKey: "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"
 });
 const openai = new OpenAIApi(config)
 const key = process.env.OPENAI_API_KEY;
@@ -40,8 +40,9 @@ export async function sendMessage(message) {
         // Request chat completion from OpenAI using user's prompt
         const response = await openai.createChatCompletion({
             model: 'gpt-3.5-turbo',
-            messages,
+            messages
         });
+        console.log('[Chat] Response:', response);
 
         // Reponse handled with appplication logic
         const reply = response.choices[0].message.content;
