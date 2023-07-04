@@ -15,9 +15,7 @@ export default function Home() {
                 <title>AIChef - Home</title>
             </Head>
             <section>
-                <body>
-                    <p>👨‍🍳 OpenAI powered recipe and image generation</p>
-                </body>
+                <p>👨‍🍳 OpenAI powered recipe and image generation</p>
             </section>
         </Layout>
     );
