@@ -24,7 +24,7 @@ export default function Layout({ children, home }) {
                     <h1>AIChef</h1>
                     <Link href="/">Home 🏠</Link>
                     <Link href="https://github.com/lekkasgit/aichef">GitHub 🔌</Link>
-                    <Link href="chat/stream">Stream</Link>
+                    <Link href="chat/stream">Stream 🌊</Link>
                 </nav>
             </div>
 
