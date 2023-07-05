@@ -46,23 +46,27 @@ export default function Home() {
       <Head>
         <title>AIChef - Home</title>
       </Head>
+      <center>
       <section>
         <p>👨‍🍳 OpenAI powered recipe and image generation</p>
       </section>
       <section>
-        <div>
-          {/* Render the response chunks */}
-          {responseChunks.map((chunk, index) => (
-            <p key={index}>{chunk}</p>
-          ))}
-
-          {/* Input form */}
-          <form onSubmit={handleSendMessage}>
-            <input type="text" />
-            <button type="submit">Send</button>
-          </form>
-        </div>
+      <input
+                  type="text"
+                  name="ingredient"
+                  placeholder="Ingredient"
+                  value=''
+                  onChange={(event) => handleInputChange(event, index)}
+                />
+                <input
+                  type="text"
+                  name="amount"
+                  placeholder="Amount"
+                  value=''
+                  onChange={(event) => handleInputChange(event, index)}
+                />
       </section>
+      </center>
     </Layout>
   );
 }
