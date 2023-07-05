@@ -18,7 +18,7 @@ import Layout from "../components/layout/layout.jsx";
 // Home
 export default function Home() {
   
-  const [responseChunks, setResponseChunks] = useState([]);
+  const [recipe, setRecipe] = useState(""); // Add recipe state
   const [ingredients, setIngredients] = useState([{ ingredient: "", amount: "" }]);
 
   // Handle changes in input
@@ -39,6 +39,9 @@ export default function Home() {
     setIngredients(newIngredients);
   };
 
+  // Reset Ingredients
+  const resetIngredients = () => { setIngredients([{ ingredient: "", amount: "" }]); };
+
   // Format ingredients to model trained prompt format (ingredient (amount), ...)
   const formatIngredients = () => { return ingredients.map((ingredient) => `${ingredient.ingredient} (${ingredient.amount})`).join(', '); };
 
@@ -53,14 +56,17 @@ export default function Home() {
       content: formatIngredients() // Formatted ingredients inputted
     };
 
+    resetIngredients();
+
     try { // Attempt to send request
 
       console.log('[User] Requesting recipe generation with ingredient(/s):', formatIngredients())
       const response = await sendMessage(formatIngredients()); // Sends message with formatted ingredients
       const recipe = await response.text() // Recipe is set as response
 
-      console.log(recipe);
-
+      console.log('[Website] Recipe received:', recipe);
+      setRecipe(recipe);
+      
     } catch (error) {
       console.error('[Error]', error)
     }
@@ -125,11 +131,9 @@ export default function Home() {
         {/* Response section */}
         <section>
 
-          {/* Response chunks */}
+          {/* Response */}
           <div>
-            {responseChunks.map((chunk, index) => (
-              <div key={index}>{chunk.text}</div>
-            ))}
+              {recipe}
           </div>
 
         </section> {/* End of response section */}

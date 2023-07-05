@@ -46,7 +46,7 @@ export default function Chat() {
       <div>
         {messages.map((message, index) => (
           <div key={index}>
-            {message.role}: {message.content}
+            {message.content}
           </div>
         ))}
       </div>
