@@ -85,31 +85,35 @@ export default function Home() {
 
             {/* Ingredient and amount forms */}
             <form onSubmit={handleSubmit}>
-              {ingredients.map((ingredient, index) => (
-                <div key={index}>
 
+              {/* JSX element map of ingredients */}
+              {ingredients.map((ingredient, index) => (
+
+                // Ingredients
+                <div key={index}>
+                  
+                  {/* Ingredient and amount inputs */}
                   <input type="text" name="ingredient" placeholder="Ingredient" value={ingredient.ingredient} onChange={(event) => handleInputChange(event, index)} /> {/* Ingredient input */}
                   <input type="text" name="amount" placeholder="Amount" value={ingredient.amount} onChange={(event) => handleInputChange(event, index)} /> {/* Amount of ingredient */}
 
-
-
-                  {index !== 0 && (
-                    <button type="button" onClick={() => handleRemoveIngredient(index)}>
-                      -
-                    </button>
+                  {/* Remove button */}
+                  {index !== 0 && ( // Check to see if ingredient is first, otherwise add remove button
+                    <button type="button" onClick={() => handleRemoveIngredient(index)}> - </button>
                   )}
+
                 </div>
+
               ))}
 
               {/* Plus button */}
-              <button type="button" onClick={handleAddIngredient}>
-                +
-              </button>
+              <button type="button" onClick={handleAddIngredient}>+</button>
 
               {/* Submit button */}
               <button type="submit">Submit</button>
 
-            </form>
+              
+                </form>
+          
 
             <div>
               {responseChunks.map((chunk, index) => (
