@@ -42,8 +42,10 @@ export default function Home() {
     return ingredients.map((ingredient) => `${ingredient.ingredient} (${ingredient.amount})`).join(', ');
   };
 
+  // Handle submission
   const handleSubmit = async (event) => {
-    event.preventDefault();
+
+    event.preventDefault(); // Prevent default
 
     // Message to be sent to model is created 
     const newMessage = {
@@ -53,6 +55,7 @@ export default function Home() {
 
     try { // Attempt to send request
 
+      console.log('[User] Requesting recipe generation with ingredient(/s):', formatIngredients())
       const response = await sendMessage(formatIngredients()); // Sends message with formatted ingredients
       const recipe = await response.text() // Recipe is set as response
 
@@ -75,10 +78,12 @@ export default function Home() {
 
       <center> {/* Center home page elements */}
 
+        {/* Top text section */}
         <section>
           <p>👨‍🍳 OpenAI powered recipe and image generation</p>
-        </section>
+        </section> {/* End of top text section */}
 
+        {/* Input section */}
         <section>
 
           <div>
@@ -91,7 +96,7 @@ export default function Home() {
 
                 // Ingredients
                 <div key={index}>
-                  
+
                   {/* Ingredient and amount inputs */}
                   <input type="text" name="ingredient" placeholder="Ingredient" value={ingredient.ingredient} onChange={(event) => handleInputChange(event, index)} /> {/* Ingredient input */}
                   <input type="text" name="amount" placeholder="Amount" value={ingredient.amount} onChange={(event) => handleInputChange(event, index)} /> {/* Amount of ingredient */}
@@ -111,19 +116,23 @@ export default function Home() {
               {/* Submit button */}
               <button type="submit">Submit</button>
 
-              
-                </form>
-          
-
-            <div>
-              {responseChunks.map((chunk, index) => (
-                <div key={index}>{chunk.text}</div>
-              ))}
-            </div>
+            </form>
 
           </div>
 
-        </section>
+        </section> {/* End of input section */}
+        
+        {/* Response section */}
+        <section>
+
+          {/* Response chunks */}
+          <div>
+            {responseChunks.map((chunk, index) => (
+              <div key={index}>{chunk.text}</div>
+            ))}
+          </div>
+
+        </section> {/* End of response section */}
 
       </center>
 

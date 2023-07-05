@@ -14,14 +14,14 @@ import { Configuration, OpenAIApi } from "openai-edge";
 
 // OpebAI Configuration
 const config = new Configuration({
-    apiKey: "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",
+    apiKey: "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",
 });
 const openai = new OpenAIApi(config);
 export const runtime = "edge";
 
 // Send Message to OpenAI Function
 export async function sendMessage(message) {
-    console.log("[Chat] Send message function ran")
+    console.log("[System] Received message:", message)
 
     // Message
     const messages = [
@@ -44,6 +44,6 @@ export async function sendMessage(message) {
 
     // Converting into text-friendly stream and returning it
     const stream = OpenAIStream(response);
-    console.log('[Chat] Returning response');
+    console.log('[System] Returning response:', stream);
     return new StreamingTextResponse(stream);
 }
