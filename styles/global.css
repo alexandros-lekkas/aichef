@@ -47,29 +47,3 @@ input[type="text"] {
   margin-left: 5px; /* Add a margin on the left side of each input */
   margin-right: 5px; /* Add a margin on the right side of each input */
 }
-
-button {
-  padding: 10px;
-  font-size: 16px;
-  border-radius: 5px;
-  border: none;
-  background-color: #0070f3;
-  color: #fff;
-  cursor: pointer;
-}
-
-button[type="button"] {
-  background-color: #aaa;
-}
-
-button[type="submit"] {
-  background-color: #4caf50;
-}
-
-button:hover {
-  opacity: 0.8;
-}
-
-html {
-  scroll-behavior: smooth;
-}

@@ -1,0 +1,9 @@
+.topSection {
+    padding: 20px;
+    background-color: rgba(179, 179, 179, 0.075);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    color: black;
+    max-width: 600px;
+    margin: 2.5%;
+    border-radius: 10px;
+  }

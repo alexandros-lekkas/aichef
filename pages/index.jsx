@@ -15,6 +15,9 @@ import Head from "next/head";
 // Components
 import Layout from "../components/layout/layout.jsx";
 
+// CSS
+import styles from '../styles/pages/index.module.css'
+
 // Home
 export default function Home() {
   
@@ -80,13 +83,21 @@ export default function Home() {
 
       <Head>
         <title>AIChef - Home</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"></link>
       </Head>
 
       <center> {/* Center home page elements */}
 
         {/* Top text section */}
         <section>
-          <p>👨‍🍳 OpenAI powered recipe and image generation</p>
+
+          <div className={styles.topSection}>
+
+            <h4>Recipe Generator</h4>
+            <p>Generate fantastic recipes using the power of OpenAI. Just input your ingredients and you're good to go!</p>
+
+          </div>
+
         </section> {/* End of top text section */}
 
         {/* Input section */}
@@ -95,7 +106,7 @@ export default function Home() {
           <div>
 
             {/* Ingredient and amount forms */}
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} class="m-auto p-4">
 
               {/* JSX element map of ingredients */}
               {ingredients.map((ingredient, index) => (
@@ -104,8 +115,13 @@ export default function Home() {
                 <div key={index}>
 
                   {/* Ingredient and amount inputs */}
-                  <input type="text" name="ingredient" placeholder="Ingredient" value={ingredient.ingredient} onChange={(event) => handleInputChange(event, index)} /> {/* Ingredient input */}
-                  <input type="text" name="amount" placeholder="Amount" value={ingredient.amount} onChange={(event) => handleInputChange(event, index)} /> {/* Amount of ingredient */}
+                  <div>
+
+                    <div class="mb-2"><input type="text" name="ingredient" placeholder="Ingredient" value={ingredient.ingredient} onChange={(event) => handleInputChange(event, index)} /></div> {/* Ingredient input */}
+
+                    <div class="mb-2"><input type="text" name="amount" placeholder="Amount" value={ingredient.amount} onChange={(event) => handleInputChange(event, index)} /></div> {/* Amount of ingredient */}
+
+                  </div>
 
                   {/* Remove button */}
                   {index !== 0 && ( // Check to see if ingredient is first, otherwise add remove button
@@ -116,11 +132,15 @@ export default function Home() {
 
               ))}
 
-              {/* Plus button */}
-              <button type="button" onClick={handleAddIngredient}>+</button>
+              <div className="form-row">
 
-              {/* Submit button */}
-              <button type="submit">Submit</button>
+                {/* Plus button */}
+                <div className="col"> <button type="button" onClick={handleAddIngredient} class="btn btn-primary mb-2">+</button> </div>
+
+                {/* Submit button */}
+                <div className="col"> <button type="submit" class="btn btn-success">Submit</button> </div>
+
+              </div>
 
             </form>
 

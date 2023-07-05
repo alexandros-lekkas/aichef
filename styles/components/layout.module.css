@@ -1,0 +1,78 @@
+.navbar {
+  background-color: #f5f5f5;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  justify-content: center;
+}
+
+.navbar h1 {
+  font-size: 30px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.navbar a {
+  color: #333333;
+  text-decoration: none;
+  margin-right: 20px;
+  transition: color 0.3s ease;
+}
+
+.navbar a:hover {
+  color: #0070f3;
+}
+
+.navbar .active {
+  color: #0070f3;
+}
+
+.navbar nav {
+  display: flex;
+  align-items: center;
+}
+
+.navbar nav > *:not(:last-child) {
+  margin-right: 25px;
+}
+
+.custom-btn {
+  background-color: #f8f9fa; /* Customize the background color here */
+}
+.footer {
+  background-color: #f5f5f5;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); /* Negative Y-offset for shadow */
+  padding: 20px;
+  justify-content: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+}
+
+
+.footer button {
+  background-color: #f8f9fa; /* Customize the background color here */
+  color: #333333;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.footer button:hover {
+  background-color: #0070f3; /* Customize the hover background color here */
+  color: #ffffff; /* Customize the hover text color here */
+}
+
+.footerText {
+  margin: 10px; /* Add margin-bottom for spacing between elements */
+}
+
+.efoodLogo {
+  height: 1em; /* Adjust the height to match the size of a character of text */
+  margin-right: 5px; /* Add a small margin to separate the image from the text */
+}
+

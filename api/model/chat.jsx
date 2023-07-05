@@ -14,7 +14,7 @@ import { Configuration, OpenAIApi } from "openai-edge";
 
 // OpebAI Configuration
 const config = new Configuration({
-    apiKey: "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",
+    apiKey: "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",
 });
 const openai = new OpenAIApi(config);
 export const runtime = "edge";
@@ -27,7 +27,7 @@ export async function sendMessage(message) {
     const messages = [
         {
             role: "system",
-            content: "You are a helpful assistant that provides recipe suggestions",
+            content: "You are a helpful assistant that takes a list of ingredients provided by the user and creates a recipe based on them. You are to use ONLY the ingredients that the user lists and ONLY the amount that is listed for each ingredient (otherwise the user will not be able to make the recipe)! You should not add an ingredients list in the beginning of your response but instead just get into the preparation of the recipe and such with numbered instructions on different lines."
         },
         {
             role: "user",

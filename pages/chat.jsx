@@ -1,6 +1,8 @@
 import { useState } from 'react';
-import { sendMessage } from '../../api/model/chat';
-import Layout from '../../components/layout/layout.jsx';
+import { sendMessage } from '../api/model/chat';
+import Layout from '../components/layout/layout.jsx';
+import Head from "next/head";
+import { capitalizeFirstLetter } from '../functions/string';
 
 export default function Chat() {
   const [messages, setMessages] = useState([]);
@@ -12,44 +14,43 @@ export default function Chat() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-  
-    if (input.trim() === '') {  
+
+    if (input.trim() === '') {
       return;
     }
-  
+
     const newMessage = {
       role: 'user',
       content: input.trim(),
     };
-  
+
     setMessages((prevMessages) => [...prevMessages, newMessage]);
     setInput('');
-  
+
     try {
       const response = await sendMessage(input.trim());
       const responseText = await response.text(); // Convert the response to text
-  
+
       const replyMessage = {
         role: 'assistant',
         content: responseText, // Use the converted response text
       };
-  
+
       setMessages((prevMessages) => [...prevMessages, replyMessage]);
     } catch (error) {
       console.error('Error sending message:', error);
     }
   };
-  
 
   return (
     <Layout>
-      <div>
-        {messages.map((message, index) => (
-          <div key={index}>
-            {message.content}
-          </div>
-        ))}
-      </div>
+
+      <Head>
+        <title>AIChef - Chat</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"></link>
+      </Head>
+
+      
       <form onSubmit={handleSubmit}>
         <label>
           Say something...
@@ -59,8 +60,21 @@ export default function Chat() {
             onChange={handleInputChange}
           />
         </label>
-        <button type="submit">Send</button>
+
+        
+        <button type="submit" className="btn btn-primary text-white">Send</button>
       </form>
+<br></br>
+<br></br>
+<center>
+      <div>
+        {messages.map((message, index) => (
+          <div key={index}>
+            {capitalizeFirstLetter(message.role)}: {message.content}
+          </div>
+        ))}
+      </div>
+      </center>
     </Layout>
   );
 }
