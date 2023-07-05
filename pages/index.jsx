@@ -17,9 +17,11 @@ import Layout from "../components/layout/layout.jsx";
 
 // Home
 export default function Home() {
+  
   const [responseChunks, setResponseChunks] = useState([]);
   const [ingredients, setIngredients] = useState([{ ingredient: "", amount: "" }]);
 
+  // Handle changes in input
   const handleInputChange = (event, index) => {
     const { name, value } = event.target;
     const newIngredients = [...ingredients];
@@ -27,10 +29,10 @@ export default function Home() {
     setIngredients(newIngredients);
   };
 
-  const handleAddIngredient = () => {
-    setIngredients([...ingredients, { ingredient: "", amount: "" }]);
-  };
+  // Ingredient addition
+  const handleAddIngredient = () => { setIngredients([...ingredients, { ingredient: "", amount: "" }]); };
 
+  // Ingredient removal
   const handleRemoveIngredient = (index) => {
     const newIngredients = [...ingredients];
     newIngredients.splice(index, 1);
@@ -38,9 +40,7 @@ export default function Home() {
   };
 
   // Format ingredients to model trained prompt format (ingredient (amount), ...)
-  const formatIngredients = () => {
-    return ingredients.map((ingredient) => `${ingredient.ingredient} (${ingredient.amount})`).join(', ');
-  };
+  const formatIngredients = () => { return ingredients.map((ingredient) => `${ingredient.ingredient} (${ingredient.amount})`).join(', '); };
 
   // Handle submission
   const handleSubmit = async (event) => {
