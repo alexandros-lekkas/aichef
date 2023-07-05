@@ -11,10 +11,12 @@
 // OpenAI Imports
 import { OpenAIStream, StreamingTextResponse } from "ai";
 import { Configuration, OpenAIApi } from "openai-edge";
+import dotenv from 'dotenv';
+dotenv.config();
 
 // OpebAI Configuration
 const config = new Configuration({
-    apiKey: "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",
+    apiKey: process.env.OPENAI_API_KEY,
 });
 const openai = new OpenAIApi(config);
 export const runtime = "edge";

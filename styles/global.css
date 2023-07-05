@@ -6,7 +6,20 @@ body {
     Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   line-height: 1.6;
   font-size: 18px;
+  min-height: 100vh; /* Adjust the value (40px) as needed for the footer's height and any additional spacing */
+  display: flex;
+  flex-direction: column;
 }
+
+.container {
+  flex: 1;
+}
+
+.footer {
+  /* ... existing styles ... */
+  flex-shrink: 0;
+}
+
 
 * {
   box-sizing: border-box;

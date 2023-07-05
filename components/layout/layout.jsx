@@ -29,6 +29,7 @@ export default function Layout({ children, home }) {
                     <h1>AIChef</h1>
                     <Link legacyBehavior href="/"><a className="btn btn-primary text-white">Home 🏠</a></Link>
                     <Link legacyBehavior href="chat"><a className="btn btn-primary text-white">Chat 💬</a></Link>
+                    <Link legacyBehavior href="wfood"><a className="btn btn-primary text-white">Wfood 🍴</a></Link>
                     <Link legacyBehavior href="https://github.com/lekkasgit/aichef"><a href="https://github.com/lekkasgit/aichef" className="btn btn-secondary text-white">GitHub 🔌</a></Link>
                     <left>👨‍🍳 OpenAI powered recipe and image generation</left>
                 </nav>
