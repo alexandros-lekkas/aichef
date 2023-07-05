@@ -13,7 +13,7 @@ export default function Chat() {
   const handleSubmit = async (event) => {
     event.preventDefault();
   
-    if (input.trim() === '') {
+    if (input.trim() === '') {  
       return;
     }
   
